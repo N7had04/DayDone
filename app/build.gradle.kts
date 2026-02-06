@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.ksp)  // Add KSP plugin
-    alias(libs.plugins.hilt.android)  // Add Hilt plugin if using
+    alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.hilt.android)
     alias(libs.plugins.navigation.safe.args)
 }
 
