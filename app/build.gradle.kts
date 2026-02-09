@@ -36,6 +36,7 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        viewBinding = true
     }
 }
 
@@ -49,6 +50,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.legacy.support.v4)
 
     // Lifecycle (ViewModel + LiveData)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
