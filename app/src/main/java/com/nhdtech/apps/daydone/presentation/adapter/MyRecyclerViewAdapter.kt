@@ -30,9 +30,11 @@ class MyRecyclerViewAdapter(val taskList: List<Task>): RecyclerView.Adapter<MyVi
 
 }
 
-class MyViewHolder(binding: ListItemBinding): RecyclerView.ViewHolder(binding.root) {
+class MyViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(task: Task) {
-
+        binding.tvTaskTitle.text = task.title
+        binding.tvTaskDescription.text = task.description
+        binding.tvTaskDeadline.text = task.deadline.toString()
     }
 }

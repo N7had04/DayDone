@@ -1,5 +1,6 @@
 package com.nhdtech.apps.daydone.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nhdtech.apps.daydone.data.model.Task
@@ -13,17 +14,17 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val deleteTaskUseCase: DeleteTaskUseCase,
-    private val getAllTasksUseCase: GetAllTasksUseCase,
+    getAllTasksUseCase: GetAllTasksUseCase,
     private val deleteAllTasksUseCase: DeleteAllTasksUseCase
 ) : ViewModel() {
+
+    val tasks: LiveData<List<Task>> = getAllTasksUseCase.execute()
 
     fun deleteTask(task: Task) {
         viewModelScope.launch {
             deleteTaskUseCase.execute(task)
         }
     }
-
-    fun getAllTasks() = getAllTasksUseCase.execute()
 
     fun deleteAllTasks() {
         viewModelScope.launch {

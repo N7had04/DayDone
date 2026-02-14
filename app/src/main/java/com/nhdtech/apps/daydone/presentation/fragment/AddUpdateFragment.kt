@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.nhdtech.apps.daydone.R
 import com.nhdtech.apps.daydone.databinding.FragmentAddUpdateBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddUpdateFragment : Fragment() {
     private lateinit var binding: FragmentAddUpdateBinding
 
