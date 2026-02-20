@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/addUpdateFragment"
-        android:name="com.nhdtech.apps.daydone.presentation.fragment.AddUpdateFragment"
+        android:name="com.nhdtech.apps.daydone.presentation.fragment.AddTaskFragment"
         android:label="fragment_add_update"
         tools:layout="@layout/fragment_add_update" />
 </navigation>

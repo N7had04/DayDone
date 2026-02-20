@@ -5,7 +5,6 @@ import com.nhdtech.apps.daydone.domain.usecase.AddTaskUseCase
 import com.nhdtech.apps.daydone.domain.usecase.DeleteAllTasksUseCase
 import com.nhdtech.apps.daydone.domain.usecase.DeleteTaskUseCase
 import com.nhdtech.apps.daydone.domain.usecase.GetAllTasksUseCase
-import com.nhdtech.apps.daydone.domain.usecase.UpdateTaskUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,12 +19,6 @@ class UseCaseModule {
     @Provides
     fun provideAddTaskUseCase(dayDoneRepository: DayDoneRepository): AddTaskUseCase {
         return AddTaskUseCase(dayDoneRepository)
-    }
-
-    @Singleton
-    @Provides
-    fun provideUpdateTaskUseCase(dayDoneRepository: DayDoneRepository): UpdateTaskUseCase {
-        return UpdateTaskUseCase(dayDoneRepository)
     }
 
     @Singleton

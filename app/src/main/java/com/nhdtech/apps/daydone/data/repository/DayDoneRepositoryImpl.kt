@@ -10,10 +10,6 @@ class DayDoneRepositoryImpl(private val taskDao: TaskDao) : DayDoneRepository {
         taskDao.insertTask(task)
     }
 
-    override suspend fun updateTask(task: Task) {
-        taskDao.updateTask(task)
-    }
-
     override suspend fun deleteTask(task: Task) {
         taskDao.deleteTask(task)
     }
