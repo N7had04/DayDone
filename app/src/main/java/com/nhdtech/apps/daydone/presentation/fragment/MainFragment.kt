@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -31,17 +32,23 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.myViewModel = mainViewModel
         binding.myRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = MyRecyclerViewAdapter(mainViewModel.tasks.value ?: emptyList() )
+        adapter = MyRecyclerViewAdapter(
+            onDeleteClick = { task ->
+                mainViewModel.deleteTask(task)
+            }
+        )
         binding.myRecyclerView.adapter = adapter
-        if (!mainViewModel.tasks.value.isNullOrEmpty()) {
-            binding.tvEmpty.visibility = View.GONE
-        } else {
-            binding.tvEmpty.visibility = View.VISIBLE
+        mainViewModel.tasks.observe(viewLifecycleOwner) { taskList ->
+            adapter.submitList(taskList)
+            if (taskList.isEmpty()) {
+                binding.tvEmpty.visibility = View.VISIBLE
+            } else {
+                binding.tvEmpty.visibility = View.GONE
+            }
         }
         binding.fabAddTask.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_addUpdateFragment)
         }
-
 
         return binding.root
     }

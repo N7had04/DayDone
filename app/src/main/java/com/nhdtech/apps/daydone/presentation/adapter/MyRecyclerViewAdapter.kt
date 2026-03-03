@@ -5,8 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nhdtech.apps.daydone.data.model.Task
 import com.nhdtech.apps.daydone.databinding.ListItemBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-class MyRecyclerViewAdapter(val taskList: List<Task>): RecyclerView.Adapter<MyViewHolder>() {
+class MyRecyclerViewAdapter(private val onDeleteClick: (Task) -> Unit): RecyclerView.Adapter<MyViewHolder>() {
+
+    private var taskList: List<Task> = emptyList()
+
+    fun submitList(newList: List<Task>) {
+        taskList = newList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -21,7 +31,7 @@ class MyRecyclerViewAdapter(val taskList: List<Task>): RecyclerView.Adapter<MyVi
         holder: MyViewHolder,
         position: Int
     ) {
-        holder.bind(taskList[position])
+        holder.bind(taskList[position], onDeleteClick)
     }
 
     override fun getItemCount(): Int {
@@ -32,9 +42,23 @@ class MyRecyclerViewAdapter(val taskList: List<Task>): RecyclerView.Adapter<MyVi
 
 class MyViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(task: Task) {
+    fun bind(
+        task: Task,
+        onDeleteClick: (Task) -> Unit
+    ) {
         binding.tvTaskTitle.text = task.title
         binding.tvTaskDescription.text = task.description
-        binding.tvTaskDeadline.text = task.deadline.toString()
+        val format = SimpleDateFormat(
+            "dd MMM yyyy, HH:mm",
+            Locale.getDefault()
+        )
+
+        binding.tvTaskDeadline.text = format.format(Date(task.deadline))
+
+        binding.checkBox.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                onDeleteClick(task)
+            }
+        }
     }
 }

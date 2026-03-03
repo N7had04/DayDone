@@ -32,15 +32,16 @@
 
                 <ImageButton
                     android:id="@+id/btnBack"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="@null"
+                    android:contentDescription="@string/go_back"
                     android:src="@drawable/ic_arrow_back" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add a new task"
+                    android:text="@string/add_a_new_task"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -54,7 +55,7 @@
             android:id="@+id/tvTitleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="@string/title"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginStart="16dp"
@@ -77,7 +78,7 @@
                 android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter task title"/>
+                android:hint="@string/enter_task_title"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Description Label -->
@@ -85,7 +86,7 @@
             android:id="@+id/tvDescriptionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description (Optional)"
+            android:text="@string/description_optional"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginStart="16dp"
@@ -108,7 +109,7 @@
                 android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter description"
+                android:hint="@string/enter_description"
                 android:minLines="3"
                 android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -118,7 +119,7 @@
             android:id="@+id/tvDeadlineLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deadline"
+            android:text="@string/deadline"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginStart="16dp"
@@ -141,11 +142,12 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDeadline"
+                android:text="@{myViewModel.selectedDeadlineText}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Select date and time"
+                android:hint="@string/select_date_and_time"
                 android:focusable="false"
-                android:clickable="true"/>
+                android:cursorVisible="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Save FAB -->
@@ -154,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:contentDescription="Save Task"
+            android:contentDescription="@string/save_task"
             app:srcCompat="@drawable/ic_check"
             android:tint="@android:color/white"
             app:backgroundTint="@color/blue"
