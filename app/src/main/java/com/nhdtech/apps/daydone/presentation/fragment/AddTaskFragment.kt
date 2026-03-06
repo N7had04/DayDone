@@ -11,16 +11,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.nhdtech.apps.daydone.R
-import com.nhdtech.apps.daydone.data.model.Task
 import com.nhdtech.apps.daydone.databinding.FragmentAddUpdateBinding
 import com.nhdtech.apps.daydone.presentation.viewmodel.AddTaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 @AndroidEntryPoint
 class AddTaskFragment : Fragment() {
@@ -35,6 +30,12 @@ class AddTaskFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.myViewModel = viewModel
 
+        viewModel.taskSaved.observe(viewLifecycleOwner) { saved ->
+            if (saved) {
+                findNavController().popBackStack()
+            }
+        }
+
         binding.apply {
             btnBack.setOnClickListener {
                 findNavController().popBackStack()
@@ -48,7 +49,6 @@ class AddTaskFragment : Fragment() {
                         title = etTitle.text.toString(),
                         description = etDescription.text.toString()
                     )
-                    findNavController().popBackStack()
                 } else {
                     Toast.makeText(requireContext(), "Please enter task and specify deadline!", Toast.LENGTH_SHORT).show()
                 }

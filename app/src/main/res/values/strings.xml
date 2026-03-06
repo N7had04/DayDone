@@ -11,4 +11,5 @@
     <string name="deadline">Deadline</string>
     <string name="select_date_and_time">Select date and time</string>
     <string name="save_task">Save Task</string>
+    <string name="overdue">Overdue</string>
 </resources>

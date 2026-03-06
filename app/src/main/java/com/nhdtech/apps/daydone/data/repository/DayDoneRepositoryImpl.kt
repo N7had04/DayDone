@@ -6,8 +6,8 @@ import com.nhdtech.apps.daydone.data.model.Task
 import com.nhdtech.apps.daydone.domain.repository.DayDoneRepository
 
 class DayDoneRepositoryImpl(private val taskDao: TaskDao) : DayDoneRepository {
-    override suspend fun insertTask(task: Task) {
-        taskDao.insertTask(task)
+    override suspend fun insertTask(task: Task): Long {
+        return taskDao.insertTask(task)
     }
 
     override suspend fun deleteTask(task: Task) {

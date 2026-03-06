@@ -1,6 +1,7 @@
 package com.nhdtech.apps.daydone.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nhdtech.apps.daydone.data.model.Task
@@ -52,9 +53,17 @@ class MyViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(bindin
             "dd MMM yyyy, HH:mm",
             Locale.getDefault()
         )
-
         binding.tvTaskDeadline.text = format.format(Date(task.deadline))
 
+        val currentTime = System.currentTimeMillis()
+        if (task.deadline < currentTime) {
+            binding.tvOverdue.visibility = View.VISIBLE
+        } else {
+            binding.tvOverdue.visibility = View.GONE
+        }
+
+        binding.checkBox.setOnCheckedChangeListener(null)
+        binding.checkBox.isChecked = false
         binding.checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 onDeleteClick(task)
